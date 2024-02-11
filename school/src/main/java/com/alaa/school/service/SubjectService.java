@@ -13,7 +13,7 @@ public class SubjectService {
     }
 
     public Subject addSubject(Subject subject) {
-        Subject subjectAdded=new Subject();
+        Subject subjectAdded = new Subject();
         subjectAdded.setName(subject.getName());
         subjectAdded.setDescription(subject.getDescription());
         return subjectRepository.save(subjectAdded);
@@ -21,7 +21,8 @@ public class SubjectService {
 
     public Subject getSubject(Long subjectId) {
         return subjectRepository.findById(subjectId).orElseThrow(
-                ()->new RuntimeException("subject does not exist with id: "+subjectId)
+                () -> new RuntimeException("subject does not exist with id: " + subjectId)
         );
     }
 }
+

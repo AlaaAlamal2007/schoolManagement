@@ -15,12 +15,9 @@ public class Student extends AbstractPerson {
     @JoinColumn(name = "class_id")
     private Long classId;
 
-    public Student(String firstName, String secondName, String thirdName,
-                   String lastName, Long identificationNumber, String email,
-                   String mobile, Instant birthDate,
-                   Address address, Long id, Long classId) {
-        super(firstName, secondName, thirdName, lastName, identificationNumber,
-                email, mobile, birthDate, address);
+    public Student(String firstName, String secondName, String thirdName, String lastName, Long identificationNumber, String email, String mobile, Instant birthDate, Gender gender, Address address,
+                   Long id, Long classId) {
+        super(firstName, secondName, thirdName, lastName, identificationNumber, email, mobile, birthDate, gender, address);
         this.id = id;
         this.classId = classId;
     }
@@ -45,4 +42,5 @@ public class Student extends AbstractPerson {
 
     }
 }
+
 

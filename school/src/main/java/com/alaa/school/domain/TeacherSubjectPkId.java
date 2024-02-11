@@ -1,7 +1,5 @@
 package com.alaa.school.domain;
 
-import jakarta.persistence.Embeddable;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -46,3 +44,4 @@ public class TeacherSubjectPkId implements Serializable {
         return Objects.hash(teacherId, subjectId);
     }
 }
+

@@ -6,3 +6,4 @@ public class ClassInSchoolException extends RuntimeException {
     }
 }
 
+

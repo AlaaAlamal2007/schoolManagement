@@ -7,3 +7,4 @@ public class ClassInSchoolArgumentException extends ClassInSchoolException {
 }
 
 
+

@@ -20,7 +20,7 @@ public class StudentService {
 
     public Student getClassInSchool(Long studentId) {
         return studentRepository.findById(studentId).orElseThrow(
-                ()->new StudentResourceException("student does not exist "+studentId)
+                () -> new StudentResourceException("student does not exist " + studentId)
         );
     }
 
@@ -30,5 +30,22 @@ public class StudentService {
         exportUtils.exportDataToExcel(response);
         return students;
     }
+
+    public Student addStudent(Student student, Long classId) {
+        Student studentAdd = new Student();
+        studentAdd.setFirstName(student.getFirstName());
+        studentAdd.setSecondName(student.getSecondName());
+        studentAdd.setThirdName(student.getThirdName());
+        studentAdd.setLastName(student.getLastName());
+        studentAdd.setIdentificationNumber(student.getIdentificationNumber());
+        studentAdd.setEmail(student.getEmail());
+        studentAdd.setMobile(student.getMobile());
+        studentAdd.setBirthDate(student.getBirthDate());
+        studentAdd.setAddress(student.getAddress());
+        studentAdd.setGender(student.getGender());
+        studentAdd.setClassId(classId);
+        return studentRepository.save(studentAdd);
+    }
 }
+
 

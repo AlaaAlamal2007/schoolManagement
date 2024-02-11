@@ -1,6 +1,5 @@
 package com.alaa.school.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -16,17 +15,14 @@ public class Teacher extends AbstractPerson {
     @Transient
     private Set<Subject> subjectSet;
 
-    public Teacher(String firstName, String secondName, String thirdName,
-                   String lastName, Long identificationNumber, String email,
-                   String mobile, Instant birthDate, Gender gender, Address address,
-                   Long id, Set<Subject> subjectSet) {
-        super(firstName, secondName, thirdName, lastName, identificationNumber,
-                email, mobile, birthDate, gender, address);
+    public Teacher() {
+    }
+
+    public Teacher(String firstName, String secondName,
+                   String thirdName, String lastName, Long identificationNumber, String email, String mobile, Instant birthDate, Gender gender, Address address, Long id, Set<Subject> subjectSet) {
+        super(firstName, secondName, thirdName, lastName, identificationNumber, email, mobile, birthDate, gender, address);
         this.id = id;
         this.subjectSet = subjectSet;
-    }
-    public Teacher(){
-
     }
 
     public Long getId() {
@@ -45,3 +41,4 @@ public class Teacher extends AbstractPerson {
         this.subjectSet = subjectSet;
     }
 }
+

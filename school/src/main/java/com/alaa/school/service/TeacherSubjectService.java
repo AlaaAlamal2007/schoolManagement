@@ -1,6 +1,5 @@
 package com.alaa.school.service;
 
-import com.alaa.school.domain.Teacher;
 import com.alaa.school.domain.TeacherSubject;
 import com.alaa.school.repository.TeacherSubjectRepository;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class TeacherSubjectService {
     }
 
     public TeacherSubject assignTeacherToSubject(TeacherSubject teacherSubject) {
-        TeacherSubject teacherSubjectAdded=new TeacherSubject();
+        TeacherSubject teacherSubjectAdded = new TeacherSubject();
         teacherSubjectAdded.setTeacherId(teacherSubject.getTeacherId());
         teacherSubjectAdded.setSubjectId(teacherSubject.getSubjectId());
         teacherSubjectAdded.setNumberTakenClass(teacherSubject.getNumberTakenClass());
@@ -27,8 +26,8 @@ public class TeacherSubjectService {
         return teacherSubjectRepository.findBySubjectId(subjectId);
     }
 
-
     public List<TeacherSubject> getAllSubjectsTeachedByTeacher(Long teacherId) {
         return teacherSubjectRepository.findByTeacherId(teacherId);
     }
 }
+

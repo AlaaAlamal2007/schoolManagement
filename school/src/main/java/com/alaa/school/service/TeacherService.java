@@ -4,6 +4,8 @@ import com.alaa.school.domain.Teacher;
 import com.alaa.school.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TeacherService {
     private final TeacherRepository teacherRepository;
@@ -26,4 +28,9 @@ public class TeacherService {
         teacherAdded.setAddress(teacher.getAddress());
         return teacherRepository.save(teacherAdded);
     }
+
+    public List<Teacher> getAllTeachers() {
+        return teacherRepository.findAll();
+    }
 }
+

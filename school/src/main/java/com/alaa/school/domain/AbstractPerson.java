@@ -1,9 +1,6 @@
 package com.alaa.school.domain;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.time.Instant;
 
@@ -17,14 +14,14 @@ public abstract class AbstractPerson {
     private String email;
     private String mobile;
     private Instant birthDate;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    public AbstractPerson(String firstName, String secondName, String thirdName,
-                          String lastName, Long identificationNumber,
-                          String email, String mobile, Instant birthDate,
-                          Address address) {
+    public AbstractPerson(String firstName, String secondName, String thirdName, String lastName, Long identificationNumber, String email, String mobile, Instant birthDate,
+                          Gender gender, Address address) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.thirdName = thirdName;
@@ -33,6 +30,7 @@ public abstract class AbstractPerson {
         this.email = email;
         this.mobile = mobile;
         this.birthDate = birthDate;
+        this.gender = gender;
         this.address = address;
     }
 
@@ -110,5 +108,14 @@ public abstract class AbstractPerson {
 
     public AbstractPerson() {
     }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 }
+
 

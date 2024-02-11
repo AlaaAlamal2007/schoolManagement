@@ -1,13 +1,9 @@
 package com.alaa.school.controller;
 
-import com.alaa.school.domain.ClassInSchool;
 import com.alaa.school.domain.Student;
 import com.alaa.school.service.StudentService;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -21,9 +17,10 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}")
-    public Student getClassInSchool(@PathVariable Long studentId ){
+    public Student getClassInSchool(@PathVariable Long studentId) {
         return studentService.getClassInSchool(studentId);
     }
+
     @GetMapping("/export-to-excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
@@ -31,6 +28,12 @@ public class StudentController {
         String headerValue = "attachment; filename=Student_Information.xlsx";
         response.setHeader(headerKey, headerValue);
         studentService.exportStudentToExcel(response);
+    }
 
+    @PostMapping("/{classId}")
+    public Student addStudent(@RequestBody Student student, @PathVariable Long classId
+    ) {
+        return studentService.addStudent(student, classId);
     }
 }
+

@@ -1,6 +1,5 @@
 package com.alaa.school.repository;
 
-import com.alaa.school.domain.Teacher;
 import com.alaa.school.domain.TeacherSubject;
 import com.alaa.school.domain.TeacherSubjectPkId;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface TeacherSubjectRepository extends JpaRepository<TeacherSubject, TeacherSubjectPkId> {
-   List<TeacherSubject> findBySubjectId(Long subjectId);
+    List<TeacherSubject> findBySubjectId(Long subjectId);
 
-
-   List<TeacherSubject> findByTeacherId(Long teacherId);
+    List<TeacherSubject> findByTeacherId(Long teacherId);
 }
+

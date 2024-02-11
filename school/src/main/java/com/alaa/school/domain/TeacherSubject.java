@@ -4,34 +4,30 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name="teacher_subject")
+@Table(name = "teacher_subject")
 @IdClass(TeacherSubjectPkId.class)
 public class TeacherSubject implements Serializable {
-//    @EmbeddedId
+    //    @EmbeddedId
 //    private TeacherSubjectPkId teacherSubjectPkId;
     @Id
     private Long teacherId;
     @Id
     private Long subjectId;
     private Integer NumberTakenClass;
-    @OneToMany(mappedBy = "teacherSubject")
-    private Set<ClassInSchool> classInSchoolSet;
+//    @OneToMany(mappedBy = "teacherSubject")
+//    private Set<ClassInSchool> classInSchoolSet;
 
     public TeacherSubject() {
     }
 
-
-
-
-
-    public TeacherSubject(Long teacherId, Long subjectId, Integer numberTakenClass, Set<ClassInSchool> classInSchoolSet) {
+    public TeacherSubject(Long teacherId, Long subjectId, Integer numberTakenClass
+    ) {
         this.teacherId = teacherId;
         this.subjectId = subjectId;
         NumberTakenClass = numberTakenClass;
-        this.classInSchoolSet = classInSchoolSet;
+
     }
 
     public Long getTeacherId() {
@@ -64,7 +60,7 @@ public class TeacherSubject implements Serializable {
                 "teacherId=" + teacherId +
                 ", subjectId=" + subjectId +
                 ", NumberTakenClass=" + NumberTakenClass +
-                ", classInSchoolSet=" + classInSchoolSet +
+
                 '}';
     }
 
@@ -73,12 +69,13 @@ public class TeacherSubject implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeacherSubject that = (TeacherSubject) o;
-        return Objects.equals(teacherId, that.teacherId) && Objects.equals(subjectId, that.subjectId) && Objects.equals(NumberTakenClass, that.NumberTakenClass) && Objects.equals(classInSchoolSet, that.classInSchoolSet);
+        return Objects.equals(teacherId, that.teacherId) && Objects.equals(subjectId, that.subjectId) && Objects.equals(NumberTakenClass, that.NumberTakenClass);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teacherId, subjectId, NumberTakenClass, classInSchoolSet);
+        return Objects.hash(teacherId, subjectId, NumberTakenClass);
     }
 }
+
 
