@@ -3,7 +3,7 @@ package com.alaa.school.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="addresses")
+@Table(name = "addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,4 +66,5 @@ public class Address {
         this.postCode = postCode;
     }
 }
+
 
