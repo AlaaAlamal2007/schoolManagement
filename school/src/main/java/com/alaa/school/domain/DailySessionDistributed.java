@@ -10,12 +10,16 @@ import java.util.Objects;
 @IdClass(DailySessionDistributedPkId.class)
 public class DailySessionDistributed implements Serializable {
     @Id
-    private Long teacherId;
+    @JoinColumn(name = "teacher_subject_teacher_id")
+    private Long teacherSubjectTeacherId;
     @Id
-    private Long subjectId;
+    @JoinColumn(name = "teacher_subject_subject_id")
+    private Long teacherSubjectSubjectId;
     @Id
+    @JoinColumn(name = "class_id")
     private Long classId;
     @Id
+    @JoinColumn(name = "session_id")
     private Long sessionId;
     @JoinColumn(name = "daily_sessions_id")
     private Long dailySessionsId;
@@ -23,28 +27,30 @@ public class DailySessionDistributed implements Serializable {
     public DailySessionDistributed() {
     }
 
-    public DailySessionDistributed(Long teacherId, Long subjectId, Long classId, Long sessionId, Long dailySessionsId) {
-        this.teacherId = teacherId;
-        this.subjectId = subjectId;
+    public DailySessionDistributed(Long teacherSubjectTeacherId, Long teacherSubjectSubjectId, Long classId, Long sessionId, Long dailySessionsId
+    ) {
+        this.teacherSubjectTeacherId = teacherSubjectTeacherId;
+        this.teacherSubjectSubjectId = teacherSubjectSubjectId;
         this.classId = classId;
         this.sessionId = sessionId;
         this.dailySessionsId = dailySessionsId;
+
     }
 
-    public Long getTeacherId() {
-        return teacherId;
+    public Long getTeacherSubjectTeacherId() {
+        return teacherSubjectTeacherId;
     }
 
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacherSubjectTeacherId(Long teacherSubjectTeacherId) {
+        this.teacherSubjectTeacherId = teacherSubjectTeacherId;
     }
 
-    public Long getSubjectId() {
-        return subjectId;
+    public Long getTeacherSubjectSubjectId() {
+        return teacherSubjectSubjectId;
     }
 
-    public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
+    public void setTeacherSubjectSubjectId(Long teacherSubjectSubjectId) {
+        this.teacherSubjectSubjectId = teacherSubjectSubjectId;
     }
 
     public Long getClassId() {
@@ -76,19 +82,19 @@ public class DailySessionDistributed implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DailySessionDistributed that = (DailySessionDistributed) o;
-        return Objects.equals(teacherId, that.teacherId) && Objects.equals(subjectId, that.subjectId) && Objects.equals(classId, that.classId) && Objects.equals(sessionId, that.sessionId) && Objects.equals(dailySessionsId, that.dailySessionsId);
+        return Objects.equals(teacherSubjectTeacherId, that.teacherSubjectTeacherId) && Objects.equals(teacherSubjectSubjectId, that.teacherSubjectSubjectId) && Objects.equals(classId, that.classId) && Objects.equals(sessionId, that.sessionId) && Objects.equals(dailySessionsId, that.dailySessionsId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teacherId, subjectId, classId, sessionId, dailySessionsId);
+        return Objects.hash(teacherSubjectTeacherId, teacherSubjectSubjectId, classId, sessionId, dailySessionsId);
     }
 
     @Override
     public String toString() {
         return "DailySessionDistributed{" +
-                "teacherId=" + teacherId +
-                ", subjectId=" + subjectId +
+                "teacherId=" + teacherSubjectTeacherId +
+                ", subjectId=" + teacherSubjectSubjectId +
                 ", classId=" + classId +
                 ", sessionId=" + sessionId +
                 ", dailySessionsId=" + dailySessionsId +

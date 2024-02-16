@@ -1,9 +1,7 @@
 package com.alaa.school.utils;
 
 import com.alaa.school.domain.*;
-import com.alaa.school.exceptions.ClassInSchoolResourceException;
-import com.alaa.school.exceptions.SubjectResourceException;
-import com.alaa.school.exceptions.TeacherResourceException;
+import com.alaa.school.exceptions.*;
 import com.alaa.school.repository.*;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
@@ -69,7 +67,7 @@ public class ExcelDailySessionsExportUtils {
         Cell c = createCell(row, 0, "Daily sessions", style);
         style.setAlignment(HorizontalAlignment.LEFT);
         c.setCellStyle(style);
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 5));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 4));
         font.setFontHeightInPoints((short) 10);
         row = sheet.createRow(1);
         font.setBold(true);
@@ -104,19 +102,18 @@ public class ExcelDailySessionsExportUtils {
             classInSchool = classInSchoolRepository.findById(dsd.getClassId()).orElseThrow(
                     () -> new ClassInSchoolResourceException("class does not exist ")
             );
-            teacher = teacherRepository.findById(dsd.getTeacherId()).orElseThrow(
+            teacher = teacherRepository.findById(dsd.getTeacherSubjectTeacherId()).orElseThrow(
                     () -> new TeacherResourceException("teacher does not exist ")
             );
-            subject = subjectRepository.findById(dsd.getSubjectId()).orElseThrow(
+            subject = subjectRepository.findById(dsd.getTeacherSubjectSubjectId()).orElseThrow(
                     () -> new SubjectResourceException("subject does not exist ")
             );
             dailySession = dailySessionRepository.findById(dsd.getDailySessionsId()).orElseThrow(
-                    () -> new RuntimeException("day does not exist ")
+                    () -> new DailySessionResourceException("day does not exist ")
             );
             session = sessionRepository.findById(dsd.getSessionId()).orElseThrow(
-                    () -> new RuntimeException("session does not exist")
+                    () -> new SessionResourceException("session does not exist")
             );
-
             createCell(row, columnCount++, teacher.getFirstName() + " " + teacher.getLastName(), style);
             createCell(row, columnCount++, subject.getName(), style);
             createCell(row, columnCount++, classInSchool.getClassType() + "/" + classInSchool.getClassNumber(), style);
@@ -124,6 +121,7 @@ public class ExcelDailySessionsExportUtils {
             createCell(row, columnCount++, dailySession.getDayName(), style);
         }
     }
+
 
     public void exportDailySessionsToExcel(HttpServletResponse response) throws IOException {
         createHeaderRow();

@@ -14,23 +14,29 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Teacher addTeacher(Teacher teacher) {
-        Teacher teacherAdded = new Teacher();
-        teacherAdded.setFirstName(teacher.getFirstName());
-        teacherAdded.setSecondName(teacher.getSecondName());
-        teacherAdded.setThirdName(teacher.getThirdName());
-        teacherAdded.setLastName(teacher.getLastName());
-        teacherAdded.setIdentificationNumber(teacher.getIdentificationNumber());
-        teacherAdded.setEmail(teacher.getEmail());
-        teacherAdded.setMobile(teacher.getMobile());
-        teacherAdded.setBirthDate(teacher.getBirthDate());
-        teacherAdded.setGender(teacher.getGender());
-        teacherAdded.setAddress(teacher.getAddress());
-        return teacherRepository.save(teacherAdded);
+    public String addTeacher(Teacher teacher) {
+        Teacher teacherExist = teacherRepository.findByIdentificationNumber(teacher.getIdentificationNumber()).orElse(null);
+
+        if (teacherExist == null) {
+            Teacher teacherAdded = new Teacher();
+            teacherAdded.setFirstName(teacher.getFirstName());
+            teacherAdded.setSecondName(teacher.getSecondName());
+            teacherAdded.setThirdName(teacher.getThirdName());
+            teacherAdded.setLastName(teacher.getLastName());
+            teacherAdded.setIdentificationNumber(teacher.getIdentificationNumber());
+            teacherAdded.setEmail(teacher.getEmail());
+            teacherAdded.setMobile(teacher.getMobile());
+            teacherAdded.setBirthDate(teacher.getBirthDate());
+            teacherAdded.setGender(teacher.getGender());
+            teacherAdded.setAddress(teacher.getAddress());
+            return teacherRepository.save(teacherAdded) + "added";
+        }
+        return "teacher exist";
     }
 
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
 }
+
 

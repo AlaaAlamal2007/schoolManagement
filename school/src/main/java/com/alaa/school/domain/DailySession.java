@@ -7,8 +7,14 @@ import java.util.Set;
 @Entity
 @Table(name = "daily_sessions")
 public class DailySession {
+    /*
+    defined by system :
+    id  Day
+    __________
+    1   SATURDAY
+    2   SUNDAY
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
     private SessionDay dayName;
@@ -48,4 +54,5 @@ public class DailySession {
         this.dailySessionsInSchool = dailySessionsInSchool;
     }
 }
+
 

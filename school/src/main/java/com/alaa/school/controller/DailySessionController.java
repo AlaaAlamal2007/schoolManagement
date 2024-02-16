@@ -1,6 +1,5 @@
 package com.alaa.school.controller;
 
-import com.alaa.school.domain.DailySession;
 import com.alaa.school.domain.DailySessionDistributed;
 import com.alaa.school.service.DailySessionService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,11 +15,6 @@ public class DailySessionController {
 
     public DailySessionController(DailySessionService dailySessionService) {
         this.dailySessionService = dailySessionService;
-    }
-
-    @PostMapping
-    public DailySession addSessionsToDay(@RequestBody DailySession dailySession) {
-        return dailySessionService.addSessionsToDay(dailySession);
     }
 
     @GetMapping("/{dailySession}")

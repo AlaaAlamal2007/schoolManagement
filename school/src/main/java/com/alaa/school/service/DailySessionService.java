@@ -1,6 +1,5 @@
 package com.alaa.school.service;
 
-import com.alaa.school.domain.DailySession;
 import com.alaa.school.domain.DailySessionDistributed;
 import com.alaa.school.repository.*;
 import com.alaa.school.utils.ExcelDailySessionsExportUtils;
@@ -29,12 +28,6 @@ public class DailySessionService {
         this.sessionRepository = sessionRepository;
     }
 
-    public DailySession addSessionsToDay(DailySession dailySession) {
-        DailySession dailySessionAdded = new DailySession();
-        dailySessionAdded.setDayName(dailySession.getDayName());
-        return dailySessionRepository.save(dailySession);
-    }
-
     public List<DailySessionDistributed> getAllSessionOnDay(Long dailySession) {
         return dailySessionDistributedRepository.findAllByDailySessionsId(dailySession);
     }
@@ -44,7 +37,7 @@ public class DailySessionService {
         ExcelDailySessionsExportUtils exportUtils = new ExcelDailySessionsExportUtils(dsDistributed, teacherRepository, classInSchoolRepository,
                 subjectRepository, dailySessionRepository, sessionRepository);
         exportUtils.exportDailySessionsToExcel(response);
-
     }
 }
+
 

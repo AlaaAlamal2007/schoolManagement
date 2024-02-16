@@ -27,7 +27,7 @@ public class TeacherSubjectController {
     }
 
     @PostMapping
-    public TeacherSubject assignTeacherToSubject(@RequestBody TeacherSubject teacherSubject) {
+    public String assignTeacherToSubject(@RequestBody TeacherSubject teacherSubject) {
         return teacherSubjectService.assignTeacherToSubject(teacherSubject);
     }
 
@@ -46,7 +46,10 @@ public class TeacherSubjectController {
         return teachers;
     }
 
-    //getAllSubjectsTeachedByteacher
+    /*
+        getAllSubjectsTeachedByteacher
+
+     */
     @GetMapping("/getSubjects/{teacherId}")
     public List<Subject> getAllSubjectsTeachedByTeacher(@PathVariable Long teacherId) {
         List<TeacherSubject> teacherSubjectList = teacherSubjectService.getAllSubjectsTeachedByTeacher(teacherId);
@@ -59,4 +62,6 @@ public class TeacherSubjectController {
         return subjects;
     }
 }
+
+
 

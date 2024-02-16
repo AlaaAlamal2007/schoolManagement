@@ -29,13 +29,23 @@ public class ClassInSchoolService {
         return classInSchool;
     }
 
-    public ClassInSchool addClassToSchool(ClassInSchool classInSchool) {
+    public String addClassToSchool(ClassInSchool classInSchool) {
         ClassInSchool classAddedToSchool = new ClassInSchool();
+        List<ClassInSchool> classInSchoolList = classInSchoolRepo.findAll();
         classAddedToSchool.setClassType(classInSchool.getClassType());
         classAddedToSchool.setClassNumber(classInSchool.getClassNumber());
-        return classInSchoolRepo.save(classAddedToSchool);
+        boolean existClass = false;
+        for (ClassInSchool c : classInSchoolList) {
+            if (c.getClassType() == classAddedToSchool.getClassType() &&
+                    c.getClassNumber() == classAddedToSchool.getClassNumber()) {
+                existClass = true;
+                return "exist class";
+            }
+        }
+        return classInSchoolRepo.save(classAddedToSchool) + "added";
     }
 }
+
 
 
 

@@ -19,9 +19,10 @@ public class ClassInSchoolController {
     }
 
     @PostMapping
-    public ClassInSchool addClassToSchool(@RequestBody ClassInSchool classInSchool) {
+    public String addClassToSchool(@RequestBody ClassInSchool classInSchool) {
         return classInSchoolService.addClassToSchool(classInSchool);
     }
 }
+
 
 
