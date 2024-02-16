@@ -4,17 +4,18 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class DailySessionDistributedPkId implements Serializable {
-    private Long teacherId;
-    private Long subjectId;
+    private Long teacherSubjectTeacherId;
+    private Long teacherSubjectSubjectId;
     private Long classId;
+
     private Long sessionId;
 
     public DailySessionDistributedPkId() {
     }
 
     public DailySessionDistributedPkId(Long teacherId, Long subjectId, Long classId, Long sessionId) {
-        this.teacherId = teacherId;
-        this.subjectId = subjectId;
+        this.teacherSubjectTeacherId = teacherId;
+        this.teacherSubjectSubjectId = subjectId;
         this.classId = classId;
         this.sessionId = sessionId;
     }
@@ -24,28 +25,28 @@ public class DailySessionDistributedPkId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DailySessionDistributedPkId that = (DailySessionDistributedPkId) o;
-        return Objects.equals(teacherId, that.teacherId) && Objects.equals(subjectId, that.subjectId) && Objects.equals(classId, that.classId) && Objects.equals(sessionId, that.sessionId);
+        return Objects.equals(teacherSubjectTeacherId, that.teacherSubjectTeacherId) && Objects.equals(teacherSubjectSubjectId, that.teacherSubjectSubjectId) && Objects.equals(classId, that.classId) && Objects.equals(sessionId, that.sessionId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teacherId, subjectId, classId, sessionId);
+        return Objects.hash(teacherSubjectTeacherId, teacherSubjectSubjectId, classId, sessionId);
     }
 
     public Long getTeacherId() {
-        return teacherId;
+        return teacherSubjectTeacherId;
     }
 
     public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+        this.teacherSubjectTeacherId = teacherId;
     }
 
     public Long getSubjectId() {
-        return subjectId;
+        return teacherSubjectSubjectId;
     }
 
     public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
+        this.teacherSubjectSubjectId = subjectId;
     }
 
     public Long getClassId() {
@@ -64,4 +65,5 @@ public class DailySessionDistributedPkId implements Serializable {
         this.sessionId = sessionId;
     }
 }
+
 

@@ -4,3 +4,4 @@ public enum SessionDay {
     SATURDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY
 }
 
+

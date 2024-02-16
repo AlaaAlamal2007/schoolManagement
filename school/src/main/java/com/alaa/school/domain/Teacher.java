@@ -3,6 +3,7 @@ package com.alaa.school.domain;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -37,8 +38,32 @@ public class Teacher extends AbstractPerson {
         return subjectSet;
     }
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", subjectSet=" + subjectSet +
+                '}';
+    }
+
     public void setSubjectSet(Set<Subject> subjectSet) {
         this.subjectSet = subjectSet;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Teacher teacher = (Teacher) o;
+        return Objects.equals(id, teacher.id) && Objects.equals(subjectSet, teacher.subjectSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, subjectSet);
+    }
 }
+
+
+
 

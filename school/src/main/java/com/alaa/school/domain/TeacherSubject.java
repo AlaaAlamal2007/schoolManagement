@@ -9,21 +9,23 @@ import java.util.Objects;
 @Table(name = "teacher_subject")
 @IdClass(TeacherSubjectPkId.class)
 public class TeacherSubject implements Serializable {
-    //    @EmbeddedId
-//    private TeacherSubjectPkId teacherSubjectPkId;
     @Id
+    @JoinColumn(name = "teacher_id")
     private Long teacherId;
     @Id
+    @JoinColumn(name = "subject_id")
     private Long subjectId;
     private Integer NumberTakenClass;
-//    @OneToMany(mappedBy = "teacherSubject")
-//    private Set<ClassInSchool> classInSchoolSet;
 
     public TeacherSubject() {
     }
 
-    public TeacherSubject(Long teacherId, Long subjectId, Integer numberTakenClass
-    ) {
+    public TeacherSubject(Long teacherId, Long subjectId) {
+        this.teacherId = teacherId;
+        this.subjectId = subjectId;
+    }
+
+    public TeacherSubject(Long teacherId, Long subjectId, Integer numberTakenClass) {
         this.teacherId = teacherId;
         this.subjectId = subjectId;
         NumberTakenClass = numberTakenClass;
@@ -60,7 +62,6 @@ public class TeacherSubject implements Serializable {
                 "teacherId=" + teacherId +
                 ", subjectId=" + subjectId +
                 ", NumberTakenClass=" + NumberTakenClass +
-
                 '}';
     }
 
@@ -77,5 +78,6 @@ public class TeacherSubject implements Serializable {
         return Objects.hash(teacherId, subjectId, NumberTakenClass);
     }
 }
+
 
 

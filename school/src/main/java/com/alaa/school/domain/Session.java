@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "sessions")
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String startTime;
     private String endTime;

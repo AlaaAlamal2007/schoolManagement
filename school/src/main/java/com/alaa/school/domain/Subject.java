@@ -57,5 +57,17 @@ public class Subject {
     public void setTeacherSet(Set<Teacher> teacherSet) {
         this.teacherSet = teacherSet;
     }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", teacherSet=" + teacherSet +
+                '}';
+    }
 }
+
+
 

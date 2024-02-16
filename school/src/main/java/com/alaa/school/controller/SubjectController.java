@@ -17,9 +17,10 @@ public class SubjectController {
     }
 
     @PostMapping
-    public Subject addSubject(@RequestBody Subject subject){
+    public String addSubject(@RequestBody Subject subject) {
         return subjectService.addSubject(subject);
 
     }
 }
+
 

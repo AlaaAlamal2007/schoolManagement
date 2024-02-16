@@ -9,3 +9,4 @@ public interface ClassInSchoolRepository extends JpaRepository<ClassInSchool, Lo
 }
 
 
+

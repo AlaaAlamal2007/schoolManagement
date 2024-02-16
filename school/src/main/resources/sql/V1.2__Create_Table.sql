@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS teachers(
 );
 CREATE TABLE IF NOT EXISTS subjects(
      id bigint not null  GENERATED ALWAYS AS IDENTITY,
-     name VARCHAR(255),
+     name VARCHAR(255) unique,
      description VARCHAR(255),
      PRIMARY KEY(id)
 );
+
